@@ -9,6 +9,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+            @font-face {
+        font-family: 'OpenSansHebrew';
+        src: url('https://roei-redler.github.io/I-MEDAS/opensanshebrew-regular.ttf') format('truetype');
+    }
     </style>
 </head>
 <body class="bg-gray-100">
@@ -148,6 +152,9 @@
             <button type="button" onclick="calculateScore()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                 חשב ציון
             </button>
+<button type="button" id="downloadButton" style="display: none;" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2">
+    הורד תוצאות (PDF)
+</button>
         </form>
 
         <div id="result" class="bg-white shadow-md rounded px-8 pt-6 pb-8"></div>
@@ -158,49 +165,86 @@
             <p>&copy; 2024 I-MEDAS. כל הזכויות שמורות.</p>
         </div>
     </footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+<script>
+    function calculateScore() {
+        let totalScore = 0;
+        const form = document.getElementById('questionnaireForm');
+        const result = document.getElementById('result');
+        result.innerHTML = '<h2 class="text-2xl font-bold mb-4">תוצאות:</h2>';
 
-    <script>
-        function calculateScore() {
-            let totalScore = 0;
-            const form = document.getElementById('questionnaireForm');
-            const result = document.getElementById('result');
-            result.innerHTML = '<h2 class="text-2xl font-bold mb-4">תוצאות:</h2>';
+        // Scoring logic for each question
+        if (form.q1.value === 'כן') totalScore++;
+        if (form.q2.value === 'כן') totalScore++;
+        if (parseFloat(form.q3.value) >= 2) totalScore++;
+        if (parseInt(form.q4.value) >= 3) totalScore++;
+        if (parseFloat(form.q5.value) < 1) totalScore++;
+        if (parseFloat(form.q6.value) < 1) totalScore++;
+        if (parseInt(form.q7.value) >= 3) totalScore++;
+        if (parseInt(form.q8.value) >= 2) totalScore++;
+        if (parseInt(form.q9.value) < 7) totalScore++;
+        if (parseInt(form.q10.value) >= 7) totalScore++;
+        if (parseInt(form.q11.value) >= 3) totalScore++;
+        if (parseInt(form.q12.value) >= 3) totalScore++;
+        if (parseInt(form.q13.value) >= 3) totalScore++;
+        if (parseInt(form.q14.value) >= 3) totalScore++;
+        if (parseInt(form.q15.value) < 3) totalScore++;
+        if (parseInt(form.q16.value) <= 2) totalScore++;
+        if (parseInt(form.q17.value) <= 3) totalScore++;
 
-            // Scoring logic for each question
-            if (form.q1.value === 'כן') totalScore++;
-            if (form.q2.value === 'כן') totalScore++;
-            if (parseFloat(form.q3.value) >= 2) totalScore++;
-            if (parseInt(form.q4.value) >= 3) totalScore++;
-            if (parseFloat(form.q5.value) < 1) totalScore++;
-            if (parseFloat(form.q6.value) < 1) totalScore++;
-            if (parseInt(form.q7.value) >= 3) totalScore++;
-            if (parseInt(form.q8.value) >= 2) totalScore++;
-            if (parseInt(form.q9.value) < 7) totalScore++;
-            if (parseInt(form.q10.value) >= 7) totalScore++;
-            if (parseInt(form.q11.value) >= 3) totalScore++;
-            if (parseInt(form.q12.value) >= 3) totalScore++;
-            if (parseInt(form.q13.value) >= 3) totalScore++;
-            if (parseInt(form.q14.value) >= 3) totalScore++;
-            if (parseInt(form.q15.value) < 3) totalScore++;
-            if (parseInt(form.q16.value) <= 2) totalScore++;
-            if (parseInt(form.q17.value) <= 3) totalScore++;
-             // Display individual question scores
-            for (let i = 1; i <= 17; i++) {
-                const score = (i === 1 || i === 2) ? (form[`q${i}`].value === 'כן' ? 1 : 0) : 
-                              (eval(`parseInt(form.q${i}.value) ${getCondition(i)}`) ? 1 : 0);
-                result.innerHTML += `<p class="mb-2">שאלה ${i}: <span class="font-semibold">${score} נקודה</span></p>`;
-            }
-              // Display total score
-            result.innerHTML += `<h3 class="text-xl font-bold mt-4">ציון כולל: <span class="text-blue-600">${totalScore} מתוך 17</span></h3>`;
+        // Display individual question scores
+        for (let i = 1; i <= 17; i++) {
+            const score = (i === 1 || i === 2) ? (form[`q${i}`].value === 'כן' ? 1 : 0) : 
+                          (eval(`parseInt(form.q${i}.value) ${getCondition(i)}`) ? 1 : 0);
+            result.innerHTML += `<p class="mb-2">שאלה ${i}: <span class="font-semibold">${score} נקודה</span></p>`;
         }
-function getCondition(questionNumber) {
-            const conditions = {
-                3: '>= 2', 4: '>= 3', 5: '< 1', 6: '< 1', 7: '>= 3', 8: '>= 2',
-                9: '< 7', 10: '>= 7', 11: '>= 3', 12: '>= 3', 13: '>= 3',
-                14: '>= 3', 15: '< 3', 16: '<= 2', 17: '<= 3'
-            };
-            return conditions[questionNumber] || '';
-        }
-    </script>
+
+        // Display total score
+        result.innerHTML += `<h3 class="text-xl font-bold mt-4">ציון כולל: <span class="text-blue-600">${totalScore} מתוך 17</span></h3>`;
+
+        // Show the download button after calculating the score
+        document.getElementById('downloadButton').style.display = 'inline-block';
+    }
+
+    function getCondition(questionNumber) {
+        const conditions = {
+            3: '>= 2', 4: '>= 3', 5: '< 1', 6: '< 1', 7: '>= 3', 8: '>= 2',
+            9: '< 7', 10: '>= 7', 11: '>= 3', 12: '>= 3', 13: '>= 3',
+            14: '>= 3', 15: '< 3', 16: '<= 2', 17: '<= 3'
+        };
+        return conditions[questionNumber] || '';
+    }
+
+ document.getElementById('downloadButton').addEventListener('click', generatePDF);
+
+    function generatePDF() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        doc.setFont("helvetica");
+        doc.setFontSize(16);
+        doc.text("I-MEDAS Results", 105, 20, null, null, "center");
+
+        doc.setFontSize(12);
+        const results = document.querySelectorAll("#result p");
+        results.forEach((result, index) => {
+            // Translate the result text to English
+            let englishText = result.textContent
+                .replace("שאלה", "Question")
+                .replace("נקודה", "point");
+            doc.text(englishText, 20, 40 + index * 10);
+        });
+
+        const totalScore = document.querySelector("#result h3").textContent;
+        let englishTotalScore = totalScore
+            .replace("ציון כולל:", "Total Score:")
+            .replace("מתוך", "out of");
+        doc.setFontSize(14);
+        doc.text(englishTotalScore, 20, 40 + results.length * 10);
+
+        doc.save("I-MEDAS_results.pdf");
+    }
+</script>
 </body>
 </html>
