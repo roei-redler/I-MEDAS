@@ -239,29 +239,32 @@
             const result = document.getElementById('result');
             result.innerHTML = '<h2 class="text-2xl font-bold mb-4">תוצאות:</h2>';
 
+            // Collect user input
+            const userInput = collectUserInput();
+
             // Scoring logic for each question
-            if (form.q1.value === 'כן') totalScore++;
-            if (form.q2.value === 'כן') totalScore++;
-            if (parseFloat(form.q3.value) >= 2) totalScore++;
-            if (parseInt(form.q4.value) >= 3) totalScore++;
-            if (parseFloat(form.q5.value) < 1) totalScore++;
-            if (parseFloat(form.q6.value) < 1) totalScore++;
-            if (parseInt(form.q7.value) >= 3) totalScore++;
-            if (parseInt(form.q8.value) >= 2) totalScore++;
-            if (parseInt(form.q9.value) < 7) totalScore++;
-            if (parseInt(form.q10.value) >= 7) totalScore++;
-            if (parseInt(form.q11.value) >= 3) totalScore++;
-            if (parseInt(form.q12.value) >= 3) totalScore++;
-            if (parseInt(form.q13.value) >= 3) totalScore++;
-            if (parseInt(form.q14.value) >= 3) totalScore++;
-            if (parseInt(form.q15.value) < 3) totalScore++;
-            if (parseInt(form.q16.value) <= 2) totalScore++;
-            if (parseInt(form.q17.value) <= 3) totalScore++;
+            if (userInput.q1 === 'כן') totalScore++;
+            if (userInput.q2 === 'כן') totalScore++;
+            if (parseFloat(userInput.q3) >= 2) totalScore++;
+            if (parseInt(userInput.q4) >= 3) totalScore++;
+            if (parseFloat(userInput.q5) < 1) totalScore++;
+            if (parseFloat(userInput.q6) < 1) totalScore++;
+            if (parseInt(userInput.q7) >= 3) totalScore++;
+            if (parseInt(userInput.q8) >= 2) totalScore++;
+            if (parseInt(userInput.q9) < 7) totalScore++;
+            if (parseInt(userInput.q10) >= 7) totalScore++;
+            if (parseInt(userInput.q11) >= 3) totalScore++;
+            if (parseInt(userInput.q12) >= 3) totalScore++;
+            if (parseInt(userInput.q13) >= 3) totalScore++;
+            if (parseInt(userInput.q14) >= 3) totalScore++;
+            if (parseInt(userInput.q15) < 3) totalScore++;
+            if (parseInt(userInput.q16) <= 2) totalScore++;
+            if (parseInt(userInput.q17) <= 3) totalScore++;
 
             // Display individual question scores
             for (let i = 1; i <= 17; i++) {
-                const score = (i === 1 || i === 2) ? (form[`q${i}`].value === 'כן' ? 1 : 0) :
-                    (eval(`parseInt(form.q${i}.value) ${getCondition(i)}`) ? 1 : 0);
+                const score = (i === 1 || i === 2) ? (userInput[`q${i}`] === 'כן' ? 1 : 0) :
+                    (eval(`parseInt(userInput.q${i}) ${getCondition(i)}`) ? 1 : 0);
                 result.innerHTML += `<p class="mb-2">שאלה ${i}: <span class="font-semibold">${score} נקודה</span></p>`;
             }
 
@@ -270,6 +273,7 @@
 
             // Show the download button after calculating the score
             document.getElementById('downloadButton').style.display = 'inline-block';
+
             // Send data to API
             sendDataToAPI(userInput, totalScore);
         }
