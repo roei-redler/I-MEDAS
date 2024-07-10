@@ -234,7 +234,6 @@
             return userInput;
         }
         function calculateScore() {
-            let totalScore = 0;
             const form = document.getElementById('questionnaireForm');
             const result = document.getElementById('result');
             result.innerHTML = '<h2 class="text-2xl font-bold mb-4">תוצאות:</h2>';
@@ -242,30 +241,33 @@
             // Collect user input
             const userInput = collectUserInput();
 
-            // Scoring logic for each question
-            if (userInput.q1 === 'כן') totalScore++;
-            if (userInput.q2 === 'כן') totalScore++;
-            if (parseFloat(userInput.q3) >= 2) totalScore++;
-            if (parseInt(userInput.q4) >= 3) totalScore++;
-            if (parseFloat(userInput.q5) < 1) totalScore++;
-            if (parseFloat(userInput.q6) < 1) totalScore++;
-            if (parseInt(userInput.q7) >= 3) totalScore++;
-            if (parseInt(userInput.q8) >= 2) totalScore++;
-            if (parseInt(userInput.q9) < 7) totalScore++;
-            if (parseInt(userInput.q10) >= 7) totalScore++;
-            if (parseInt(userInput.q11) >= 3) totalScore++;
-            if (parseInt(userInput.q12) >= 3) totalScore++;
-            if (parseInt(userInput.q13) >= 3) totalScore++;
-            if (parseInt(userInput.q14) >= 3) totalScore++;
-            if (parseInt(userInput.q15) < 3) totalScore++;
-            if (parseInt(userInput.q16) <= 2) totalScore++;
-            if (parseInt(userInput.q17) <= 3) totalScore++;
+            // Object to store individual question scores
+            let scores = {};
+            let totalScore = 0;
 
-            // Display individual question scores
+            // Scoring logic for each question
+            scores.q1 = userInput.q1 === 'כן' ? 1 : 0;
+            scores.q2 = userInput.q2 === 'כן' ? 1 : 0;
+            scores.q3 = parseFloat(userInput.q3) >= 2 ? 1 : 0;
+            scores.q4 = parseInt(userInput.q4) >= 3 ? 1 : 0;
+            scores.q5 = parseFloat(userInput.q5) < 1 ? 1 : 0;
+            scores.q6 = parseFloat(userInput.q6) < 1 ? 1 : 0;
+            scores.q7 = parseInt(userInput.q7) >= 3 ? 1 : 0;
+            scores.q8 = parseInt(userInput.q8) >= 2 ? 1 : 0;
+            scores.q9 = parseInt(userInput.q9) < 7 ? 1 : 0;
+            scores.q10 = parseInt(userInput.q10) >= 7 ? 1 : 0;
+            scores.q11 = parseInt(userInput.q11) >= 3 ? 1 : 0;
+            scores.q12 = parseInt(userInput.q12) >= 3 ? 1 : 0;
+            scores.q13 = parseInt(userInput.q13) >= 3 ? 1 : 0;
+            scores.q14 = parseInt(userInput.q14) >= 3 ? 1 : 0;
+            scores.q15 = parseInt(userInput.q15) < 3 ? 1 : 0;
+            scores.q16 = parseInt(userInput.q16) <= 2 ? 1 : 0;
+            scores.q17 = parseInt(userInput.q17) <= 3 ? 1 : 0;
+
+            // Display individual question scores and calculate total score
             for (let i = 1; i <= 17; i++) {
-                const score = (i === 1 || i === 2) ? (userInput[`q${i}`] === 'כן' ? 1 : 0) :
-                    (eval(`parseInt(userInput.q${i}) ${getCondition(i)}`) ? 1 : 0);
-                result.innerHTML += `<p class="mb-2">שאלה ${i}: <span class="font-semibold">${score} נקודה</span></p>`;
+                result.innerHTML += `<p class="mb-2">שאלה ${i}: <span class="font-semibold">${scores[`q${i}`]} נקודה</span></p>`;
+                totalScore += scores[`q${i}`];
             }
 
             // Display total score
@@ -275,15 +277,15 @@
             document.getElementById('downloadButton').style.display = 'inline-block';
 
             // Send data to API
-            sendDataToAPI(userInput, totalScore);
+            sendDataToAPI(userInput, scores);
         }
         // Modified function to send POST request to API
-        function sendDataToAPI(userInput, totalScore) {
+        function sendDataToAPI(userInput, scores) {
             const apiUrl = 'https://your-api-endpoint.com/submit-scores'; // Replace with your actual API endpoint
 
             const data = {
                 userInput: userInput,
-                totalScore: totalScore,
+                scores: scores,
                 submissionDateTime: getCurrentIsraelDateTime()
             };
 
