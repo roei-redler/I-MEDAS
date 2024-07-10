@@ -168,6 +168,30 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 <script>
+    // Function to get current date and time in Israel time zone
+function getCurrentIsraelDateTime() {
+    const options = {
+        timeZone: 'Asia/Jerusalem',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+    };
+    return new Date().toLocaleString('en-US', options);
+}
+
+// Function to collect user input (unchanged)
+function collectUserInput() {
+    const form = document.getElementById('questionnaireForm');
+    let userInput = {};
+    for (let i = 1; i <= 17; i++) {
+        userInput[`q${i}`] = form[`q${i}`].value;
+    }
+    return userInput;
+}
     function calculateScore() {
         let totalScore = 0;
         const form = document.getElementById('questionnaireForm');
@@ -205,7 +229,36 @@
 
         // Show the download button after calculating the score
         document.getElementById('downloadButton').style.display = 'inline-block';
+            // Send data to API
+    sendDataToAPI(userInput, totalScore);
     }
+    // Modified function to send POST request to API
+function sendDataToAPI(userInput, totalScore) {
+    const apiUrl = 'https://your-api-endpoint.com/submit-scores'; // Replace with your actual API endpoint
+
+    const data = {
+        userInput: userInput,
+        totalScore: totalScore,
+        submissionDateTime: getCurrentIsraelDateTime()
+    };
+
+    fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+        // You can add any additional handling of the API response here
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+        // You can add error handling here
+    });
+}
 
     function getCondition(questionNumber) {
         const conditions = {
