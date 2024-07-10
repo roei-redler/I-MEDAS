@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html dir="rtl" lang="he">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,18 +9,23 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-            @font-face {
-        font-family: 'OpenSansHebrew';
-        src: url('https://roei-redler.github.io/I-MEDAS/opensanshebrew-regular.ttf') format('truetype');
-    }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        @font-face {
+            font-family: 'OpenSansHebrew';
+            src: url('https://roei-redler.github.io/I-MEDAS/opensanshebrew-regular.ttf') format('truetype');
+        }
     </style>
 </head>
+
 <body class="bg-gray-100">
     <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-md">
         <div class="container">
             <a class="navbar-brand" href="#">I-MEDAS</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -61,7 +67,8 @@
             </div>
 
             <div class="mb-4">
-                <p class="font-semibold mb-2">2. האם אתה אוכל בשר עוף או הודו לעיתים קרובות יותר מאשר בשר בקר, המבורגר או נקניק? (אם צמחוני/טבעוני סמן "כן")</p>
+                <p class="font-semibold mb-2">2. האם אתה אוכל בשר עוף או הודו לעיתים קרובות יותר מאשר בשר בקר, המבורגר
+                    או נקניק? (אם צמחוני/טבעוני סמן "כן")</p>
                 <div class="flex gap-4">
                     <label class="inline-flex items-center">
                         <input type="radio" name="q2" value="כן" class="form-radio text-blue-600">
@@ -75,86 +82,120 @@
             </div>
 
             <div class="mb-4">
-                <p class="font-semibold mb-2">3. כמה מנות ירקות אתה אוכל ביום? (מנה אחת = 200 גר'. לדוגמא: עגבנייה גדולה, פלפל גדול, 2 מלפפונים בינוניים; תוספת ירקות למנה עיקרית נחשבת ½ מנה)</p>
-                <input type="number" name="q3" step="0.1" min="0" class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                <p class="font-semibold mb-2">3. כמה מנות ירקות אתה אוכל ביום? (מנה אחת = 200 גר'. לדוגמא: עגבנייה
+                    גדולה, פלפל גדול, 2 מלפפונים בינוניים; תוספת ירקות למנה עיקרית נחשבת ½ מנה)</p>
+                <input type="number" name="q3" step="0.1" min="0"
+                    class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
             </div>
 
             <div class="mb-4">
-                <p class="font-semibold mb-2">4. כמה מנות פרי אתה אוכל ביום? (לא כולל מיצי פירות). (מנה אחת = 125 גר'. לדוגמא: תפוח-עץ בינוני, תפוז קטן)</p>
-                <input type="number" name="q4" min="0" class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                <p class="font-semibold mb-2">4. כמה מנות פרי אתה אוכל ביום? (לא כולל מיצי פירות). (מנה אחת = 125 גר'.
+                    לדוגמא: תפוח-עץ בינוני, תפוז קטן)</p>
+                <input type="number" name="q4" min="0"
+                    class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
             </div>
 
             <div class="mb-4">
-                <p class="font-semibold mb-2">5. כמה מנות חמאה, מרגרינה או שמנת מתוקה/לבישול אתה צורך ביום? (מנה אחת = 12 גרם, כ-2 כפיות)</p>
-                <input type="number" name="q5" min="0" class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                <p class="font-semibold mb-2">5. כמה מנות חמאה, מרגרינה או שמנת מתוקה/לבישול אתה צורך ביום? (מנה אחת =
+                    12 גרם, כ-2 כפיות)</p>
+                <input type="number" name="q5" min="0"
+                    class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
             </div>
 
             <div class="mb-4">
-                <p class="font-semibold mb-2">6. כמה כוסות משקאות ממותקים בסוכר (כגון: משקאות קלים בטעמי פירות, משקאות אנרגיה, קוקה קולה לא דייאט) אתה שותה ביום?</p>
-                <input type="number" name="q6" min="0" class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                <p class="font-semibold mb-2">6. כמה כוסות משקאות ממותקים בסוכר (כגון: משקאות קלים בטעמי פירות, משקאות
+                    אנרגיה, קוקה קולה לא דייאט) אתה שותה ביום?</p>
+                <input type="number" name="q6" min="0"
+                    class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
             </div>
 
             <div class="mb-4">
-                <p class="font-semibold mb-2">7. כמה מנות מדגנים מלאים אתה אוכל ביום? (כגון: לחם או פסטה מחיטה מלאה, בורגול, פריקה, כוסמת, גריסים, אורז מלא) (מנה אחת = פרוסת לחם או ½ כוס דגן מבושל)</p>
-                <input type="number" name="q7" min="0" class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                <p class="font-semibold mb-2">7. כמה מנות מדגנים מלאים אתה אוכל ביום? (כגון: לחם או פסטה מחיטה מלאה,
+                    בורגול, פריקה, כוסמת, גריסים, אורז מלא) (מנה אחת = פרוסת לחם או ½ כוס דגן מבושל)</p>
+                <input type="number" name="q7" min="0"
+                    class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
             </div>
 
             <div class="mb-4">
-                <p class="font-semibold mb-2">8. כמה מנות מוצרי-חלב שאינם ממותקים בסוכר אתה אוכל ביום? (כגון: חלב, גבינות מסוגים שונים, יוגורט, לאבנה) (מנה אחת = 1/2 כוס חלב, גביע יוגורט, 150 גר' גבינה לבנה, לאבנה או קוטג', פרוסת גבינה צהובה, כ-75 גר' גבינה מלוחה קשה, משולש גבינה מותכת)</p>
-                <input type="number" name="q8" min="0" class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                <p class="font-semibold mb-2">8. כמה מנות מוצרי-חלב שאינם ממותקים בסוכר אתה אוכל ביום? (כגון: חלב,
+                    גבינות מסוגים שונים, יוגורט, לאבנה) (מנה אחת = 1/2 כוס חלב, גביע יוגורט, 150 גר' גבינה לבנה, לאבנה
+                    או קוטג', פרוסת גבינה צהובה, כ-75 גר' גבינה מלוחה קשה, משולש גבינה מותכת)</p>
+                <input type="number" name="q8" min="0"
+                    class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
             </div>
 
             <div class="mb-4">
-                <p class="font-semibold mb-2">9. כמה מנות בשר אדום (כגון: צלי/סטייק מבשר בקר או כבש), המבורגר, או מוצרי בשר מעובד (כגון: נקניק, נקניקיות) אתה אוכל בשבוע? (מנה אחת = 100-150 גרם בשר אדום או 60 גרם בשר מעובד)</p>
-                <input type="number" name="q9" min="0" class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                <p class="font-semibold mb-2">9. כמה מנות בשר אדום (כגון: צלי/סטייק מבשר בקר או כבש), המבורגר, או מוצרי
+                    בשר מעובד (כגון: נקניק, נקניקיות) אתה אוכל בשבוע? (מנה אחת = 100-150 גרם בשר אדום או 60 גרם בשר
+                    מעובד)</p>
+                <input type="number" name="q9" min="0"
+                    class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
             </div>
 
             <div class="mb-4">
-                <p class="font-semibold mb-2">10. כמה מנות משקאות אלכוהוליים אתה שותה בשבוע? (מנה אחת = כוסית יין, כוס או פחית בירה, כוסית קטנה של משקה חריף כגון ויסקי, וודקה)</p>
-                <input type="number" name="q10" min="0" class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                <p class="font-semibold mb-2">10. כמה מנות משקאות אלכוהוליים אתה שותה בשבוע? (מנה אחת = כוסית יין, כוס
+                    או פחית בירה, כוסית קטנה של משקה חריף כגון ויסקי, וודקה)</p>
+                <input type="number" name="q10" min="0"
+                    class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
             </div>
 
             <div class="mb-4">
-                <p class="font-semibold mb-2">11. כמה מנות קטניות (כגון: עדשים, שעועית לבנה, גרגירי חומוס) אתה אוכל בשבוע? (מנה אחת = 150 גרם או ¾ כוס קטניות מבושלות)</p>
-                <input type="number" name="q11" min="0" class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                <p class="font-semibold mb-2">11. כמה מנות קטניות (כגון: עדשים, שעועית לבנה, גרגירי חומוס) אתה אוכל
+                    בשבוע? (מנה אחת = 150 גרם או ¾ כוס קטניות מבושלות)</p>
+                <input type="number" name="q11" min="0"
+                    class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
             </div>
 
             <div class="mb-4">
-                <p class="font-semibold mb-2">12. כמה מנות דג אתה אוכל בשבוע? (מנה אחת = 100-150 גרם דגים טריים או טונה מקופסה; 60 גרם דגים מלוחים/מעושנים)</p>
-                <input type="number" name="q12" min="0" class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                <p class="font-semibold mb-2">12. כמה מנות דג אתה אוכל בשבוע? (מנה אחת = 100-150 גרם דגים טריים או טונה
+                    מקופסה; 60 גרם דגים מלוחים/מעושנים)</p>
+                <input type="number" name="q12" min="0"
+                    class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
             </div>
 
             <div class="mb-4">
-                <p class="font-semibold mb-2">13. כמה מנות אגוזים או בוטנים (עם או ללא מלח) אתה אוכל בשבוע? (מנה אחת = חופן, 30 גרם)</p>
-                <input type="number" name="q13" min="0" class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                <p class="font-semibold mb-2">13. כמה מנות אגוזים או בוטנים (עם או ללא מלח) אתה אוכל בשבוע? (מנה אחת =
+                    חופן, 30 גרם)</p>
+                <input type="number" name="q13" min="0"
+                    class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
             </div>
 
             <div class="mb-4">
-                <p class="font-semibold mb-2">14. כמה מנות סלט חומוס או טחינה אתה אוכל בשבוע? (כולל טחינה בתוספת למאכלים מבושלים, וסלטים המכילים חומוס וטחינה) (מנה אחת = כף)</p>
-                <input type="number" name="q14" min="0" class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                <p class="font-semibold mb-2">14. כמה מנות סלט חומוס או טחינה אתה אוכל בשבוע? (כולל טחינה בתוספת למאכלים
+                    מבושלים, וסלטים המכילים חומוס וטחינה) (מנה אחת = כף)</p>
+                <input type="number" name="q14" min="0"
+                    class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
             </div>
 
             <div class="mb-4">
-                <p class="font-semibold mb-2">15. כמה פעמים בשבוע אתה אוכל מאפים מתוקים (קנויים או שנעשו בבית), כגון: עוגות, עוגיות, וופלות, ביסקוויטים?</p>
-                <input type="number" name="q15" min="0" class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                <p class="font-semibold mb-2">15. כמה פעמים בשבוע אתה אוכל מאפים מתוקים (קנויים או שנעשו בבית), כגון:
+                    עוגות, עוגיות, וופלות, ביסקוויטים?</p>
+                <input type="number" name="q15" min="0"
+                    class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
             </div>
 
             <div class="mb-4">
-                <p class="font-semibold mb-2">16. כמה מנות מאפים מלוחים אתה אוכל בשבוע? (כגון: בורקס, ג'חנון, מלאווח) (מנה אחת = 50-60 גר', או 1 בורקס, ½ מלאווח, ½ ג'חנון)</p>
-                <input type="number" name="q16" min="0" class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                <p class="font-semibold mb-2">16. כמה מנות מאפים מלוחים אתה אוכל בשבוע? (כגון: בורקס, ג'חנון, מלאווח)
+                    (מנה אחת = 50-60 גר', או 1 בורקס, ½ מלאווח, ½ ג'חנון)</p>
+                <input type="number" name="q16" min="0"
+                    class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
             </div>
 
             <div class="mb-4">
-                <p class="font-semibold mb-2">17. כמה מנות חטיפים מלוחים אתה אוכל בשבוע? (כגון: חטיף בוטנים, חטיף צ'יפס) (מנה אחת = 25 גר')</p>
-                <input type="number" name="q17" min="0" class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                <p class="font-semibold mb-2">17. כמה מנות חטיפים מלוחים אתה אוכל בשבוע? (כגון: חטיף בוטנים, חטיף צ'יפס)
+                    (מנה אחת = 25 גר')</p>
+                <input type="number" name="q17" min="0"
+                    class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
             </div>
 
-            <button type="button" onclick="calculateScore()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+            <button type="button" onclick="calculateScore()"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                 חשב ציון
             </button>
-<button type="button" id="downloadButton" style="display: none;" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2">
-    הורד תוצאות (PDF)
-</button>
+            <button type="button" id="downloadButton" style="display: none;"
+                class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2">
+                הורד תוצאות (PDF)
+            </button>
         </form>
 
         <div id="result" class="bg-white shadow-md rounded px-8 pt-6 pb-8"></div>
@@ -165,139 +206,140 @@
             <p>&copy; 2024 I-MEDAS. כל הזכויות שמורות.</p>
         </div>
     </footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
-<script>
-    // Function to get current date and time in Israel time zone
-function getCurrentIsraelDateTime() {
-    const options = {
-        timeZone: 'Asia/Jerusalem',
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false
-    };
-    return new Date().toLocaleString('en-US', options);
-}
-
-// Function to collect user input (unchanged)
-function collectUserInput() {
-    const form = document.getElementById('questionnaireForm');
-    let userInput = {};
-    for (let i = 1; i <= 17; i++) {
-        userInput[`q${i}`] = form[`q${i}`].value;
-    }
-    return userInput;
-}
-    function calculateScore() {
-        let totalScore = 0;
-        const form = document.getElementById('questionnaireForm');
-        const result = document.getElementById('result');
-        result.innerHTML = '<h2 class="text-2xl font-bold mb-4">תוצאות:</h2>';
-
-        // Scoring logic for each question
-        if (form.q1.value === 'כן') totalScore++;
-        if (form.q2.value === 'כן') totalScore++;
-        if (parseFloat(form.q3.value) >= 2) totalScore++;
-        if (parseInt(form.q4.value) >= 3) totalScore++;
-        if (parseFloat(form.q5.value) < 1) totalScore++;
-        if (parseFloat(form.q6.value) < 1) totalScore++;
-        if (parseInt(form.q7.value) >= 3) totalScore++;
-        if (parseInt(form.q8.value) >= 2) totalScore++;
-        if (parseInt(form.q9.value) < 7) totalScore++;
-        if (parseInt(form.q10.value) >= 7) totalScore++;
-        if (parseInt(form.q11.value) >= 3) totalScore++;
-        if (parseInt(form.q12.value) >= 3) totalScore++;
-        if (parseInt(form.q13.value) >= 3) totalScore++;
-        if (parseInt(form.q14.value) >= 3) totalScore++;
-        if (parseInt(form.q15.value) < 3) totalScore++;
-        if (parseInt(form.q16.value) <= 2) totalScore++;
-        if (parseInt(form.q17.value) <= 3) totalScore++;
-
-        // Display individual question scores
-        for (let i = 1; i <= 17; i++) {
-            const score = (i === 1 || i === 2) ? (form[`q${i}`].value === 'כן' ? 1 : 0) : 
-                          (eval(`parseInt(form.q${i}.value) ${getCondition(i)}`) ? 1 : 0);
-            result.innerHTML += `<p class="mb-2">שאלה ${i}: <span class="font-semibold">${score} נקודה</span></p>`;
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script>
+        // Function to get current date and time in Israel time zone
+        function getCurrentIsraelDateTime() {
+            const options = {
+                timeZone: 'Asia/Jerusalem',
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            };
+            return new Date().toLocaleString('en-US', options);
         }
 
-        // Display total score
-        result.innerHTML += `<h3 class="text-xl font-bold mt-4">ציון כולל: <span class="text-blue-600">${totalScore} מתוך 17</span></h3>`;
+        // Function to collect user input (unchanged)
+        function collectUserInput() {
+            const form = document.getElementById('questionnaireForm');
+            let userInput = {};
+            for (let i = 1; i <= 17; i++) {
+                userInput[`q${i}`] = form[`q${i}`].value;
+            }
+            return userInput;
+        }
+        function calculateScore() {
+            let totalScore = 0;
+            const form = document.getElementById('questionnaireForm');
+            const result = document.getElementById('result');
+            result.innerHTML = '<h2 class="text-2xl font-bold mb-4">תוצאות:</h2>';
 
-        // Show the download button after calculating the score
-        document.getElementById('downloadButton').style.display = 'inline-block';
+            // Scoring logic for each question
+            if (form.q1.value === 'כן') totalScore++;
+            if (form.q2.value === 'כן') totalScore++;
+            if (parseFloat(form.q3.value) >= 2) totalScore++;
+            if (parseInt(form.q4.value) >= 3) totalScore++;
+            if (parseFloat(form.q5.value) < 1) totalScore++;
+            if (parseFloat(form.q6.value) < 1) totalScore++;
+            if (parseInt(form.q7.value) >= 3) totalScore++;
+            if (parseInt(form.q8.value) >= 2) totalScore++;
+            if (parseInt(form.q9.value) < 7) totalScore++;
+            if (parseInt(form.q10.value) >= 7) totalScore++;
+            if (parseInt(form.q11.value) >= 3) totalScore++;
+            if (parseInt(form.q12.value) >= 3) totalScore++;
+            if (parseInt(form.q13.value) >= 3) totalScore++;
+            if (parseInt(form.q14.value) >= 3) totalScore++;
+            if (parseInt(form.q15.value) < 3) totalScore++;
+            if (parseInt(form.q16.value) <= 2) totalScore++;
+            if (parseInt(form.q17.value) <= 3) totalScore++;
+
+            // Display individual question scores
+            for (let i = 1; i <= 17; i++) {
+                const score = (i === 1 || i === 2) ? (form[`q${i}`].value === 'כן' ? 1 : 0) :
+                    (eval(`parseInt(form.q${i}.value) ${getCondition(i)}`) ? 1 : 0);
+                result.innerHTML += `<p class="mb-2">שאלה ${i}: <span class="font-semibold">${score} נקודה</span></p>`;
+            }
+
+            // Display total score
+            result.innerHTML += `<h3 class="text-xl font-bold mt-4">ציון כולל: <span class="text-blue-600">${totalScore} מתוך 17</span></h3>`;
+
+            // Show the download button after calculating the score
+            document.getElementById('downloadButton').style.display = 'inline-block';
             // Send data to API
-    sendDataToAPI(userInput, totalScore);
-    }
-    // Modified function to send POST request to API
-function sendDataToAPI(userInput, totalScore) {
-    const apiUrl = 'https://your-api-endpoint.com/submit-scores'; // Replace with your actual API endpoint
+            sendDataToAPI(userInput, totalScore);
+        }
+        // Modified function to send POST request to API
+        function sendDataToAPI(userInput, totalScore) {
+            const apiUrl = 'https://your-api-endpoint.com/submit-scores'; // Replace with your actual API endpoint
 
-    const data = {
-        userInput: userInput,
-        totalScore: totalScore,
-        submissionDateTime: getCurrentIsraelDateTime()
-    };
+            const data = {
+                userInput: userInput,
+                totalScore: totalScore,
+                submissionDateTime: getCurrentIsraelDateTime()
+            };
 
-    fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Success:', data);
-        // You can add any additional handling of the API response here
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-        // You can add error handling here
-    });
-}
+            fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    // You can add any additional handling of the API response here
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    // You can add error handling here
+                });
+        }
 
-    function getCondition(questionNumber) {
-        const conditions = {
-            3: '>= 2', 4: '>= 3', 5: '< 1', 6: '< 1', 7: '>= 3', 8: '>= 2',
-            9: '< 7', 10: '>= 7', 11: '>= 3', 12: '>= 3', 13: '>= 3',
-            14: '>= 3', 15: '< 3', 16: '<= 2', 17: '<= 3'
-        };
-        return conditions[questionNumber] || '';
-    }
+        function getCondition(questionNumber) {
+            const conditions = {
+                3: '>= 2', 4: '>= 3', 5: '< 1', 6: '< 1', 7: '>= 3', 8: '>= 2',
+                9: '< 7', 10: '>= 7', 11: '>= 3', 12: '>= 3', 13: '>= 3',
+                14: '>= 3', 15: '< 3', 16: '<= 2', 17: '<= 3'
+            };
+            return conditions[questionNumber] || '';
+        }
 
- document.getElementById('downloadButton').addEventListener('click', generatePDF);
+        document.getElementById('downloadButton').addEventListener('click', generatePDF);
 
-    function generatePDF() {
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
+        function generatePDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
 
-        doc.setFont("helvetica");
-        doc.setFontSize(16);
-        doc.text("I-MEDAS Results", 105, 20, null, null, "center");
+            doc.setFont("helvetica");
+            doc.setFontSize(16);
+            doc.text("I-MEDAS Results", 105, 20, null, null, "center");
 
-        doc.setFontSize(12);
-        const results = document.querySelectorAll("#result p");
-        results.forEach((result, index) => {
-            // Translate the result text to English
-            let englishText = result.textContent
-                .replace("שאלה", "Question")
-                .replace("נקודה", "point");
-            doc.text(englishText, 20, 40 + index * 10);
-        });
+            doc.setFontSize(12);
+            const results = document.querySelectorAll("#result p");
+            results.forEach((result, index) => {
+                // Translate the result text to English
+                let englishText = result.textContent
+                    .replace("שאלה", "Question")
+                    .replace("נקודה", "point");
+                doc.text(englishText, 20, 40 + index * 10);
+            });
 
-        const totalScore = document.querySelector("#result h3").textContent;
-        let englishTotalScore = totalScore
-            .replace("ציון כולל:", "Total Score:")
-            .replace("מתוך", "out of");
-        doc.setFontSize(14);
-        doc.text(englishTotalScore, 20, 40 + results.length * 10);
+            const totalScore = document.querySelector("#result h3").textContent;
+            let englishTotalScore = totalScore
+                .replace("ציון כולל:", "Total Score:")
+                .replace("מתוך", "out of");
+            doc.setFontSize(14);
+            doc.text(englishTotalScore, 20, 40 + results.length * 10);
 
-        doc.save("I-MEDAS_results.pdf");
-    }
-</script>
+            doc.save("I-MEDAS_results.pdf");
+        }
+    </script>
 </body>
+
 </html>
