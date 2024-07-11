@@ -323,7 +323,7 @@
                 });
         }
         // Modified function to send POST request to API
-        function sendDataToAPI(userInput, scores) {
+        function sendDataToAPI(userInput, scores, userId) {
             const apiUrl = 'https://hook.eu2.make.com/5fi1bzhk363nq5dp0rthy5j2gqq9rd1y'; // Replace with your actual API endpoint
 
             const data = {
@@ -406,6 +406,7 @@
                     body.classList.remove('popup-active');
                     // You can use the ID value here or store it for later use
                     console.log('User ID:', id);
+                    
                 } else {
                     alert('נא להזין מספר זהות תקין (עד 5 תווים, אותיות ומספרים בלבד)');
                 }
