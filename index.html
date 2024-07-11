@@ -17,6 +17,19 @@
             font-family: 'OpenSansHebrew';
             src: url('https://roei-redler.github.io/I-MEDAS/opensanshebrew-regular.ttf') format('truetype');
         }
+
+        body.popup-active {
+            overflow: hidden;
+            filter: blur(5px);
+        }
+
+        #idPopup {
+            z-index: 1000;
+        }
+
+        #idPopup>div {
+            filter: none;
+        }
     </style>
 </head>
 
@@ -277,7 +290,7 @@
             document.getElementById('downloadButton').style.display = 'inline-block';
 
             // Send data to API and disable the button
-            sendDataToAPI(userInput, scores)
+            sendDataToAPI(userInput, scores, userId)
                 .then(() => {
                     // Disable the calculate button
                     document.getElementById('calculateButton').disabled = true;
@@ -293,6 +306,7 @@
             const apiUrl = 'https://hook.eu2.make.com/5fi1bzhk363nq5dp0rthy5j2gqq9rd1y'; // Replace with your actual API endpoint
 
             const data = {
+                userId: userId,
                 userInput: userInput,
                 scores: scores,
                 submissionDateTime: getCurrentIsraelDateTime()
@@ -354,7 +368,48 @@
 
             doc.save("I-MEDAS_results.pdf");
         }
+        document.addEventListener('DOMContentLoaded', function () {
+            const idPopup = document.getElementById('idPopup');
+            const userId = document.getElementById('userId');
+            const submitId = document.getElementById('submitId');
+            const body = document.body;
+
+            // Show popup when page loads
+            idPopup.style.display = 'flex';
+            body.classList.add('popup-active');
+
+            submitId.addEventListener('click', function () {
+                const id = userId.value.trim();
+                if (id && /^[a-zA-Z0-9]{1,5}$/.test(id)) {
+                    idPopup.style.display = 'none';
+                    body.classList.remove('popup-active');
+                    // You can use the ID value here or store it for later use
+                    console.log('User ID:', id);
+                } else {
+                    alert('נא להזין מספר זהות תקין (עד 5 תווים, אותיות ומספרים בלבד)');
+                }
+            });
+
+            // Prevent closing the popup by clicking outside
+            idPopup.addEventListener('click', function (e) {
+                if (e.target === idPopup) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+            });
+        });
     </script>
+    <div id="idPopup"
+        class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center"
+        style="display: none;">
+        <div class="bg-white p-5 rounded-lg shadow-xl">
+            <h2 class="text-xl font-bold mb-4">הזן מספר זהות</h2>
+            <input type="text" id="userId" maxlength="5" class="border rounded w-full py-2 px-3 mb-4"
+                placeholder="מספר זהות (עד 5 תווים)">
+            <button id="submitId"
+                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">אישור</button>
+        </div>
+    </div>
 </body>
 
 </html>
