@@ -244,6 +244,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <script>
+
+
         // Function to get current date and time in Israel time zone
         function getCurrentIsraelDateTime() {
             const options = {
@@ -394,8 +396,9 @@
             doc.save("I-MEDAS_results.pdf");
         }
         document.addEventListener('DOMContentLoaded', function () {
+            let userId= document.getElementById('userId');
             const idPopup = document.getElementById('idPopup');
-            const userId = document.getElementById('userId');
+            
             const submitId = document.getElementById('submitId');
             const body = document.body;
 
