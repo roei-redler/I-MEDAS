@@ -245,6 +245,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <script>
 
+        // Declare a global variable to store the user ID
+        let userId;
 
         // Function to get current date and time in Israel time zone
         function getCurrentIsraelDateTime() {
@@ -270,6 +272,7 @@
             }
             return userInput;
         }
+
         function calculateScore() {
             const form = document.getElementById('questionnaireForm');
             const result = document.getElementById('result');
@@ -315,16 +318,21 @@
 
             // Send data to API and disable the button
             sendDataToAPI(userInput, scores, userId)
-                .then(() => {
-                    // Disable the calculate button
-                    document.getElementById('calculateButton').disabled = true;
-                    document.getElementById('calculateButton').classList.add('opacity-50', 'cursor-not-allowed');
+                .then((response) => {
+                    if (response === 'Accepted') {
+                        // Disable the calculate button
+                        document.getElementById('calculateButton').disabled = true;
+                        document.getElementById('calculateButton').classList.add('opacity-50', 'cursor-not-allowed');
+                    } else {
+                        throw new Error('Unexpected response from the server');
+                    }
                 })
                 .catch((error) => {
                     console.error('Error:', error);
                     // You might want to show an error message to the user here
                 });
         }
+
         // Modified function to send POST request to API
         function sendDataToAPI(userInput, scores, userId) {
             const apiUrl = 'https://hook.eu2.make.com/5fi1bzhk363nq5dp0rthy5j2gqq9rd1y'; // Replace with your actual API endpoint
@@ -336,7 +344,7 @@
                 submissionDateTime: getCurrentIsraelDateTime()
             };
 
-            fetch(apiUrl, {
+            return fetch(apiUrl, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -346,59 +354,16 @@
                 .then(response => response.text())
                 .then(text => {
                     console.log('Success:', text);
-                    // You can add any additional handling of the API response here
-                    document.getElementById('calculateButton').disabled = true;
-                    document.getElementById('calculateButton').classList.add('opacity-50', 'cursor-not-allowed');
+                    return text;  // Return the response text for further handling
                 })
                 .catch((error) => {
                     console.error('Error:', error);
-                    // You can add error handling here
+                    throw error;  // Rethrow the error to be caught in the calling function
                 });
         }
 
-
-        function getCondition(questionNumber) {
-            const conditions = {
-                3: '>= 2', 4: '>= 3', 5: '< 1', 6: '< 1', 7: '>= 3', 8: '>= 2',
-                9: '< 7', 10: '>= 7', 11: '>= 3', 12: '>= 3', 13: '>= 3',
-                14: '>= 3', 15: '< 3', 16: '<= 2', 17: '<= 3'
-            };
-            return conditions[questionNumber] || '';
-        }
-
-        document.getElementById('downloadButton').addEventListener('click', generatePDF);
-
-        function generatePDF() {
-            const { jsPDF } = window.jspdf;
-            const doc = new jsPDF();
-
-            doc.setFont("helvetica");
-            doc.setFontSize(16);
-            doc.text("I-MEDAS Results", 105, 20, null, null, "center");
-
-            doc.setFontSize(12);
-            const results = document.querySelectorAll("#result p");
-            results.forEach((result, index) => {
-                // Translate the result text to English
-                let englishText = result.textContent
-                    .replace("שאלה", "Question")
-                    .replace("נקודה", "point");
-                doc.text(englishText, 20, 40 + index * 10);
-            });
-
-            const totalScore = document.querySelector("#result h3").textContent;
-            let englishTotalScore = totalScore
-                .replace("ציון כולל:", "Total Score:")
-                .replace("מתוך", "out of");
-            doc.setFontSize(14);
-            doc.text(englishTotalScore, 20, 40 + results.length * 10);
-
-            doc.save("I-MEDAS_results.pdf");
-        }
         document.addEventListener('DOMContentLoaded', function () {
-            let userId= document.getElementById('userId');
             const idPopup = document.getElementById('idPopup');
-            
             const submitId = document.getElementById('submitId');
             const body = document.body;
 
@@ -407,13 +372,14 @@
             body.classList.add('popup-active');
 
             submitId.addEventListener('click', function () {
-                const id = userId.value.trim();
+                const idInput = document.getElementById('userId');
+                const id = idInput.value.trim();
                 if (id && /^[a-zA-Z0-9]{1,5}$/.test(id)) {
                     idPopup.style.display = 'none';
                     body.classList.remove('popup-active');
-                    // You can use the ID value here or store it for later use
+                    // Assign the user ID to the global variable
+                    userId = id;
                     console.log('User ID:', id);
-
                 } else {
                     alert('נא להזין מספר זהות תקין (עד 5 תווים, אותיות ומספרים בלבד)');
                 }
@@ -427,6 +393,7 @@
                 }
             });
         });
+
     </script>
     <div id="idPopup"
         class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center"
