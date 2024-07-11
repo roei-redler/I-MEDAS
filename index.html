@@ -18,8 +18,7 @@
             src: url('https://roei-redler.github.io/I-MEDAS/opensanshebrew-regular.ttf') format('truetype');
         }
 
-        body.popup-active {
-            overflow: hidden;
+        body.popup-active>*:not(#idPopup) {
             filter: blur(5px);
         }
 
@@ -29,6 +28,10 @@
 
         #idPopup>div {
             filter: none;
+        }
+
+        .shadow-sm {
+            box-shadow: 0 .125rem .25rem rgb(1 170 255) !important;
         }
     </style>
 </head>
