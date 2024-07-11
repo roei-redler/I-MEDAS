@@ -276,8 +276,17 @@
             // Show the download button after calculating the score
             document.getElementById('downloadButton').style.display = 'inline-block';
 
-            // Send data to API
-            sendDataToAPI(userInput, scores);
+            // Send data to API and disable the button
+            sendDataToAPI(userInput, scores)
+                .then(() => {
+                    // Disable the calculate button
+                    document.getElementById('calculateButton').disabled = true;
+                    document.getElementById('calculateButton').classList.add('opacity-50', 'cursor-not-allowed');
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    // You might want to show an error message to the user here
+                });
         }
         // Modified function to send POST request to API
         function sendDataToAPI(userInput, scores) {
