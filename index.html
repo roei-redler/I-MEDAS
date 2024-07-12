@@ -54,7 +54,7 @@
         }
 
         .description {
-            display: none;
+            display: block;
             margin-top: 0.5rem;
             color: gray;
             font-size: 0.875rem;
@@ -421,10 +421,10 @@
         });
         function toggleDescription(id) {
             const description = document.getElementById('description' + id);
-            if (description.style.display === 'none' || description.style.display === '') {
-                description.style.display = 'block';
-            } else {
+            if (description.style.display === 'block' || description.style.display === '') {
                 description.style.display = 'none';
+            } else {
+                description.style.display = 'block';
             }
         }
     </script>
