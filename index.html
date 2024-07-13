@@ -527,14 +527,30 @@
         document.addEventListener('DOMContentLoaded', function () {
             const idPopup = document.getElementById('idPopup');
             const submitId = document.getElementById('submitId');
+            const idInput = document.getElementById('userId');
             const body = document.body;
 
             // Show popup when page loads
             idPopup.style.display = 'flex';
             body.classList.add('popup-active');
 
+            // Initially disable the submit button
+            submitId.disabled = true;
+            submitId.classList.add('opacity-50', 'cursor-not-allowed');
+
+            // Add input event listener to enable/disable submit button
+            idInput.addEventListener('input', function () {
+                const id = this.value.trim();
+                if (id && /^[a-zA-Z0-9]{1,5}$/.test(id)) {
+                    submitId.disabled = false;
+                    submitId.classList.remove('opacity-50', 'cursor-not-allowed');
+                } else {
+                    submitId.disabled = true;
+                    submitId.classList.add('opacity-50', 'cursor-not-allowed');
+                }
+            });
+
             submitId.addEventListener('click', function () {
-                const idInput = document.getElementById('userId');
                 const id = idInput.value.trim();
                 if (id && /^[a-zA-Z0-9]{1,5}$/.test(id)) {
                     idPopup.style.display = 'none';
