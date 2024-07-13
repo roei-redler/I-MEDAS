@@ -104,7 +104,8 @@
         <form id="questionnaireForm" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
             <div class="mb-4">
                 <div class="question-container" onclick="toggleDescription(1)">
-                    <p class="font-semibold mb-2 question">1. האם אתה משתמש ב<b><mark>שמן זית</mark></b> כמקור העיקרי לשמן?</p>
+                    <p class="font-semibold mb-2 question">1. האם אתה משתמש ב<b><mark>שמן זית</mark></b> כמקור העיקרי
+                        לשמן?</p>
                     <p id="description1" class="description">(בבישול ובתוספת למאכלים)</p>
                 </div>
                 <div class="flex gap-4">
@@ -121,7 +122,8 @@
 
             <div class="mb-4">
                 <div class="question-container" onclick="toggleDescription(2)">
-                    <p class="font-semibold mb-2 question">2. האם אתה אוכל בשר עוף או הודו לעיתים קרובות יותר מאשר בשר בקר, המבורגר או נקניק?</p>
+                    <p class="font-semibold mb-2 question">2. האם אתה אוכל בשר עוף או הודו לעיתים קרובות יותר מאשר בשר
+                        בקר, המבורגר או נקניק?</p>
                     <p id="description2" class="description">(אם צמחוני/טבעוני סמן "כן")</p>
                 </div>
                 <div class="flex gap-4">
@@ -139,111 +141,149 @@
             <div class="mb-4">
                 <div class="question-container" onclick="toggleDescription(3)">
                     <p class="font-semibold mb-2 question">3. כמה מנות ירקות אתה אוכל ביום?</p>
-                    <p id="description3" class="description">(מנה אחת = 200 גר'. לדוגמא: עגבנייה גדולה, פלפל גדול, 2 מלפפונים בינוניים; תוספת ירקות למנה עיקרית נחשבת ½ מנה)</p>
+                    <p id="description3" class="description">(מנה אחת = 200 גר'. לדוגמא: עגבנייה גדולה, פלפל גדול, 2
+                        מלפפונים בינוניים; תוספת ירקות למנה עיקרית נחשבת ½ מנה)</p>
                 </div>
-                <input type="number" name="q3" step="0.1" min="0" class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                <input type="number" name="q3" step="0.1" min="0"
+                    class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
             </div>
 
             <div class="mb-4">
                 <div class="question-container" onclick="toggleDescription(4)">
                     <p class="font-semibold mb-2 question">4. כמה מנות פרי אתה אוכל ביום?</p>
-                    <p id="description4" class="description">(לא כולל מיצי פירות). (מנה אחת = 125 גר'. לדוגמא: תפוח-עץ בינוני, תפוז קטן)</p>
+                    <p id="description4" class="description">(לא כולל מיצי פירות). (מנה אחת = 125 גר'. לדוגמא: תפוח-עץ
+                        בינוני, תפוז קטן)</p>
                 </div>
-                <input type="number" name="q4" min="0" class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                <input type="number" name="q4" min="0"
+                    class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
             </div>
 
             <div class="mb-4">
                 <div class="question-container" onclick="toggleDescription(5)">
-                    <p class="font-semibold mb-2 question">5. כמה מנות חמאה, מרגרינה או שמנת מתוקה/לבישול אתה צורך ביום?</p>
+                    <p class="font-semibold mb-2 question">5. כמה מנות חמאה, מרגרינה או שמנת מתוקה/לבישול אתה צורך ביום?
+                    </p>
                     <p id="description5" class="description">(מנה אחת = 12 גרם, כ-2 כפיות)</p>
                 </div>
-                <input type="number" name="q5" min="0" class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                <input type="number" name="q5" min="0"
+                    class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
             </div>
 
             <div class="mb-4">
                 <div class="question-container" onclick="toggleDescription(6)">
                     <p class="font-semibold mb-2 question">6. כמה כוסות משקאות ממותקים בסוכר אתה שותה ביום?</p>
-                    <p id="description6" class="description">(כגון: משקאות קלים בטעמי פירות, משקאות אנרגיה, קוקה קולה לא דייאט)</p>
+                    <p id="description6" class="description">(כגון: משקאות קלים בטעמי פירות, משקאות אנרגיה, קוקה קולה לא
+                        דייאט)</p>
                 </div>
-                <input type="number" name="q6" min="0" class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                <input type="number" name="q6" min="0"
+                    class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
             </div>
 
             <div class="mb-4">
                 <div class="question-container" onclick="toggleDescription(7)">
                     <p class="font-semibold mb-2 question">7. כמה מנות מדגנים מלאים אתה אוכל ביום?</p>
-                    <p id="description7" class="description">(כגון: לחם או פסטה מחיטה מלאה, בורגול, פריקה, כוסמת, גריסים, אורז מלא) (מנה אחת = פרוסת לחם או ½ כוס דגן מבושל)</p>
+                    <p id="description7" class="description">(כגון: לחם או פסטה מחיטה מלאה, בורגול, פריקה, כוסמת,
+                        גריסים, אורז מלא) (מנה אחת = פרוסת לחם או ½ כוס דגן מבושל)</p>
                 </div>
-                <input type="number" name="q7" min="0" class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+                <input type="number" name="q7" min="0"
+                    class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
             </div>
 
             <div class="mb-4">
-                <p class="font-semibold mb-2">8. כמה מנות מוצרי-חלב שאינם ממותקים בסוכר אתה אוכל ביום? (כגון: חלב,
-                    גבינות מסוגים שונים, יוגורט, לאבנה) (מנה אחת = 1/2 כוס חלב, גביע יוגורט, 150 גר' גבינה לבנה, לאבנה
-                    או קוטג', פרוסת גבינה צהובה, כ-75 גר' גבינה מלוחה קשה, משולש גבינה מותכת)</p>
+                <div class="question-container" onclick="toggleDescription(8)">
+                    <p class="font-semibold mb-2 question">8. כמה מנות מוצרי-חלב שאינם ממותקים בסוכר אתה אוכל ביום?</p>
+                    <p id="description8" class="description">(כגון: חלב, גבינות מסוגים שונים, יוגורט, לאבנה) (מנה אחת =
+                        1/2 כוס חלב, גביע יוגורט, 150 גר' גבינה לבנה, לאבנה או קוטג', פרוסת גבינה צהובה, כ-75 גר' גבינה
+                        מלוחה קשה, משולש גבינה מותכת)</p>
+                </div>
                 <input type="number" name="q8" min="0"
                     class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
             </div>
 
             <div class="mb-4">
-                <p class="font-semibold mb-2">9. כמה מנות בשר אדום (כגון: צלי/סטייק מבשר בקר או כבש), המבורגר, או מוצרי
-                    בשר מעובד (כגון: נקניק, נקניקיות) אתה אוכל בשבוע? (מנה אחת = 100-150 גרם בשר אדום או 60 גרם בשר
-                    מעובד)</p>
+                <div class="question-container" onclick="toggleDescription(9)">
+                    <p class="font-semibold mb-2 question">9. כמה מנות בשר אדום (כגון: צלי/סטייק מבשר בקר או כבש),
+                        המבורגר, או מוצרי בשר מעובד (כגון: נקניק, נקניקיות) אתה אוכל בשבוע?</p>
+                    <p id="description9" class="description">(מנה אחת = 100-150 גרם בשר אדום או 60 גרם בשר מעובד)</p>
+                </div>
                 <input type="number" name="q9" min="0"
                     class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
             </div>
 
             <div class="mb-4">
-                <p class="font-semibold mb-2">10. כמה מנות משקאות אלכוהוליים אתה שותה בשבוע? (מנה אחת = כוסית יין, כוס
-                    או פחית בירה, כוסית קטנה של משקה חריף כגון ויסקי, וודקה)</p>
+                <div class="question-container" onclick="toggleDescription(10)">
+                    <p class="font-semibold mb-2 question">10. כמה מנות משקאות אלכוהוליים אתה שותה בשבוע?</p>
+                    <p id="description10" class="description">(מנה אחת = כוסית יין, כוס או פחית בירה, כוסית קטנה של משקה
+                        חריף כגון ויסקי, וודקה)</p>
+                </div>
                 <input type="number" name="q10" min="0"
                     class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
             </div>
 
             <div class="mb-4">
-                <p class="font-semibold mb-2">11. כמה מנות קטניות (כגון: עדשים, שעועית לבנה, גרגירי חומוס) אתה אוכל
-                    בשבוע? (מנה אחת = 150 גרם או ¾ כוס קטניות מבושלות)</p>
+                <div class="question-container" onclick="toggleDescription(11)">
+                    <p class="font-semibold mb-2 question">11. כמה מנות קטניות (כגון: עדשים, שעועית לבנה, גרגירי חומוס)
+                        אתה אוכל בשבוע?</p>
+                    <p id="description11" class="description">(מנה אחת = 150 גרם או ¾ כוס קטניות מבושלות)</p>
+                </div>
                 <input type="number" name="q11" min="0"
                     class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
             </div>
 
             <div class="mb-4">
-                <p class="font-semibold mb-2">12. כמה מנות דג אתה אוכל בשבוע? (מנה אחת = 100-150 גרם דגים טריים או טונה
-                    מקופסה; 60 גרם דגים מלוחים/מעושנים)</p>
+                <div class="question-container" onclick="toggleDescription(12)">
+                    <p class="font-semibold mb-2 question">12. כמה מנות דג אתה אוכל בשבוע?</p>
+                    <p id="description12" class="description">(מנה אחת = 100-150 גרם דגים טריים או טונה מקופסה; 60 גרם
+                        דגים מלוחים/מעושנים)</p>
+                </div>
                 <input type="number" name="q12" min="0"
                     class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
             </div>
 
             <div class="mb-4">
-                <p class="font-semibold mb-2">13. כמה מנות אגוזים או בוטנים (עם או ללא מלח) אתה אוכל בשבוע? (מנה אחת =
-                    חופן, 30 גרם)</p>
+                <div class="question-container" onclick="toggleDescription(13)">
+                    <p class="font-semibold mb-2 question">13. כמה מנות אגוזים או בוטנים (עם או ללא מלח) אתה אוכל בשבוע?
+                    </p>
+                    <p id="description13" class="description">(מנה אחת = חופן, 30 גרם)</p>
+                </div>
                 <input type="number" name="q13" min="0"
                     class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
             </div>
 
             <div class="mb-4">
-                <p class="font-semibold mb-2">14. כמה מנות סלט חומוס או טחינה אתה אוכל בשבוע? (כולל טחינה בתוספת למאכלים
-                    מבושלים, וסלטים המכילים חומוס וטחינה) (מנה אחת = כף)</p>
+                <div class="question-container" onclick="toggleDescription(14)">
+                    <p class="font-semibold mb-2 question">14. כמה מנות סלט חומוס או טחינה אתה אוכל בשבוע?</p>
+                    <p id="description14" class="description">(כולל טחינה בתוספת למאכלים מבושלים, וסלטים המכילים חומוס
+                        וטחינה) (מנה אחת = כף)</p>
+                </div>
                 <input type="number" name="q14" min="0"
                     class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
             </div>
 
             <div class="mb-4">
-                <p class="font-semibold mb-2">15. כמה פעמים בשבוע אתה אוכל מאפים מתוקים (קנויים או שנעשו בבית), כגון:
-                    עוגות, עוגיות, וופלות, ביסקוויטים?</p>
+                <div class="question-container" onclick="toggleDescription(15)">
+                    <p class="font-semibold mb-2 question">15. כמה פעמים בשבוע אתה אוכל מאפים מתוקים (קנויים או שנעשו
+                        בבית), כגון: עוגות, עוגיות, וופלות, ביסקוויטים?</p>
+                </div>
                 <input type="number" name="q15" min="0"
                     class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
             </div>
 
             <div class="mb-4">
-                <p class="font-semibold mb-2">16. כמה מנות מאפים מלוחים אתה אוכל בשבוע? (כגון: בורקס, ג'חנון, מלאווח)
-                    (מנה אחת = 50-60 גר', או 1 בורקס, ½ מלאווח, ½ ג'חנון)</p>
+                <div class="question-container" onclick="toggleDescription(16)">
+                    <p class="font-semibold mb-2 question">16. כמה מנות מאפים מלוחים אתה אוכל בשבוע? (כגון: בורקס,
+                        ג'חנון, מלאווח)</p>
+                    <p id="description16" class="description">(מנה אחת = 50-60 גר', או 1 בורקס, ½ מלאווח, ½ ג'חנון)</p>
+                </div>
                 <input type="number" name="q16" min="0"
                     class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
             </div>
 
             <div class="mb-4">
-                <p class="font-semibold mb-2">17. כמה מנות חטיפים מלוחים אתה אוכל בשבוע? (כגון: חטיף בוטנים, חטיף צ'יפס)
-                    (מנה אחת = 25 גר')</p>
+                <div class="question-container" onclick="toggleDescription(17)">
+                    <p class="font-semibold mb-2 question">17. כמה מנות חטיפים מלוחים אתה אוכל בשבוע? (כגון: חטיף
+                        בוטנים, חטיף צ'יפס)</p>
+                    <p id="description17" class="description">(מנה אחת = 25 גר')</p>
+                </div>
                 <input type="number" name="q17" min="0"
                     class="form-input mt-1 block w-full rounded-md border-gray-300 shadow-sm">
             </div>
