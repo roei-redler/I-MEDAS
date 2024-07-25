@@ -408,7 +408,7 @@
     <script>
 
         // Declare a global variable to store the user ID
-        let userId;
+        let selectedDateTime;
 
         // Function to get current date and time in Israel time zone
         function getCurrentIsraelDateTime() {
@@ -478,29 +478,28 @@
             // Show the download button after calculating the score
             document.getElementById('downloadButton').style.display = 'inline-block';
 
-            // Send data to API and disable the button
-            sendDataToAPI(userInput, scores, userId)
-                .then((response) => {
-                    if (response === 'Accepted') {
-                        // Disable the calculate button
-                        document.getElementById('calculateButton').disabled = true;
-                        document.getElementById('calculateButton').classList.add('opacity-50', 'cursor-not-allowed');
-                    } else {
-                        throw new Error('Unexpected response from the server');
-                    }
-                })
-                .catch((error) => {
-                    console.error('Error:', error);
-                    // You might want to show an error message to the user here
-                });
-        }
+sendDataToAPI(userInput, scores)
+        .then((response) => {
+            if (response === 'Accepted') {
+                // Disable the calculate button
+                document.getElementById('calculateButton').disabled = true;
+                document.getElementById('calculateButton').classList.add('opacity-50', 'cursor-not-allowed');
+            } else {
+                throw new Error('Unexpected response from the server');
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            // You might want to show an error message to the user here
+        });
+}
 
         // Modified function to send POST request to API
         function sendDataToAPI(userInput, scores, userId) {
             const apiUrl = 'https://hook.eu2.make.com/5fi1bzhk363nq5dp0rthy5j2gqq9rd1y'; // Replace with your actual API endpoint
 
             const data = {
-                userId: userId,
+                userId: selectedDateTime,
                 userInput: userInput,
                 scores: scores,
                 submissionDateTime: getCurrentIsraelDateTime()
@@ -554,18 +553,17 @@
     dateInput.addEventListener('input', checkInputs);
     timeInput.addEventListener('input', checkInputs);
 
-    submitDateTime.addEventListener('click', function () {
-        if (dateInput.value && timeInput.value) {
-            idPopup.style.display = 'none';
-            body.classList.remove('popup-active');
-            // Combine date and time into a single string
-            const selectedDateTime = `${dateInput.value}T${timeInput.value}`;
-            console.log('Selected Date and Time:', selectedDateTime);
-            // You can use the selectedDateTime in your API calls or other functions
-        } else {
-            alert('נא לבחור תאריך ושעה');
-        }
-    });
+submitDateTime.addEventListener('click', function () {
+    if (dateInput.value && timeInput.value) {
+        idPopup.style.display = 'none';
+        body.classList.remove('popup-active');
+        // Combine date and time into a single string
+        selectedDateTime = `${dateInput.value}T${timeInput.value}`;
+        console.log('Selected Date and Time:', selectedDateTime);
+    } else {
+        alert('נא לבחור תאריך ושעה');
+    }
+});
 
     // Prevent closing the popup by clicking outside
     idPopup.addEventListener('click', function (e) {
