@@ -434,7 +434,12 @@
             }
             return userInput;
         }
-
+function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+}
         function calculateScore() {
             const form = document.getElementById('questionnaireForm');
             const result = document.getElementById('result');
@@ -497,9 +502,11 @@ sendDataToAPI(userInput, scores)
         // Modified function to send POST request to API
         function sendDataToAPI(userInput, scores, userId) {
             const apiUrl = 'https://hook.eu2.make.com/5fi1bzhk363nq5dp0rthy5j2gqq9rd1y'; // Replace with your actual API endpoint
-
+ // Get the employee parameter from the URL
+    const employee = getUrlParameter('employee');
             const data = {
                 userId: selectedDateTime,
+                employee: employee,
                 userInput: userInput,
                 scores: scores,
                 submissionDateTime: getCurrentIsraelDateTime()
@@ -529,7 +536,11 @@ sendDataToAPI(userInput, scores)
     const dateInput = document.getElementById('userDate');
     const timeInput = document.getElementById('userTime');
     const body = document.body;
-
+    const employee = getUrlParameter('employee');
+    if (!employee) {
+        alert('חסר פרמטר עובד בכתובת URL. אנא ודא שהקישור מכיל את פרמטר העובד.');
+        // You might want to disable the form or redirect to an error page here
+    }
     // Show popup when page loads
     idPopup.style.display = 'flex';
     body.classList.add('popup-active');
