@@ -524,53 +524,57 @@
                 });
         }
 
-        document.addEventListener('DOMContentLoaded', function () {
-            const idPopup = document.getElementById('idPopup');
-            const submitId = document.getElementById('submitId');
-            const idInput = document.getElementById('userId');
-            const body = document.body;
+       document.addEventListener('DOMContentLoaded', function () {
+    const idPopup = document.getElementById('idPopup');
+    const submitDateTime = document.getElementById('submitDateTime');
+    const dateInput = document.getElementById('userDate');
+    const timeInput = document.getElementById('userTime');
+    const body = document.body;
 
-            // Show popup when page loads
-            idPopup.style.display = 'flex';
-            body.classList.add('popup-active');
+    // Show popup when page loads
+    idPopup.style.display = 'flex';
+    body.classList.add('popup-active');
 
-            // Initially disable the submit button
-            submitId.disabled = true;
-            submitId.classList.add('opacity-50', 'cursor-not-allowed');
+    // Initially disable the submit button
+    submitDateTime.disabled = true;
+    submitDateTime.classList.add('opacity-50', 'cursor-not-allowed');
 
-            // Add input event listener to enable/disable submit button
-            idInput.addEventListener('input', function () {
-                const id = this.value.trim();
-                if (id && /^[a-zA-Z0-9]{1,5}$/.test(id)) {
-                    submitId.disabled = false;
-                    submitId.classList.remove('opacity-50', 'cursor-not-allowed');
-                } else {
-                    submitId.disabled = true;
-                    submitId.classList.add('opacity-50', 'cursor-not-allowed');
-                }
-            });
+    // Function to check if both date and time are selected
+    function checkInputs() {
+        if (dateInput.value && timeInput.value) {
+            submitDateTime.disabled = false;
+            submitDateTime.classList.remove('opacity-50', 'cursor-not-allowed');
+        } else {
+            submitDateTime.disabled = true;
+            submitDateTime.classList.add('opacity-50', 'cursor-not-allowed');
+        }
+    }
 
-            submitId.addEventListener('click', function () {
-                const id = idInput.value.trim();
-                if (id && /^[a-zA-Z0-9]{1,5}$/.test(id)) {
-                    idPopup.style.display = 'none';
-                    body.classList.remove('popup-active');
-                    // Assign the user ID to the global variable
-                    userId = id;
-                    console.log('User ID:', id);
-                } else {
-                    alert('נא להזין מספר זהות תקין (עד 5 תווים, אותיות ומספרים בלבד)');
-                }
-            });
+    // Add input event listeners to enable/disable submit button
+    dateInput.addEventListener('input', checkInputs);
+    timeInput.addEventListener('input', checkInputs);
 
-            // Prevent closing the popup by clicking outside
-            idPopup.addEventListener('click', function (e) {
-                if (e.target === idPopup) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                }
-            });
-        });
+    submitDateTime.addEventListener('click', function () {
+        if (dateInput.value && timeInput.value) {
+            idPopup.style.display = 'none';
+            body.classList.remove('popup-active');
+            // Combine date and time into a single string
+            const selectedDateTime = `${dateInput.value}T${timeInput.value}`;
+            console.log('Selected Date and Time:', selectedDateTime);
+            // You can use the selectedDateTime in your API calls or other functions
+        } else {
+            alert('נא לבחור תאריך ושעה');
+        }
+    });
+
+    // Prevent closing the popup by clicking outside
+    idPopup.addEventListener('click', function (e) {
+        if (e.target === idPopup) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+    });
+});
         function toggleDescription(id) {
             const description = document.getElementById('description' + id);
             if (description.style.display === 'block' || description.style.display === '') {
@@ -584,17 +588,17 @@
             document.querySelector('.nav-links').classList.toggle('active');
         });
     </script>
-    <div id="idPopup"
-        class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center"
-        style="display: none;">
-        <div class="bg-white p-5 rounded-lg shadow-xl">
-            <h2 class="text-xl font-bold mb-4">הזן מספר מזהה של מטופל</h2>
-            <input type="text" id="userId" maxlength="5" class="border rounded w-full py-2 px-3 mb-4"
-                placeholder="מספרים/אותיות (עד 5 תווים)">
-            <button id="submitId"
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">אישור</button>
-        </div>
+<div id="idPopup"
+    class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center"
+    style="display: none;">
+    <div class="bg-white p-5 rounded-lg shadow-xl">
+        <h2 class="text-xl font-bold mb-4">בחר תאריך ושעה</h2>
+        <input type="date" id="userDate" class="border rounded w-full py-2 px-3 mb-4">
+        <input type="time" id="userTime" class="border rounded w-full py-2 px-3 mb-4">
+        <button id="submitDateTime"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">אישור</button>
     </div>
+</div>
 </body>
 
 </html>
