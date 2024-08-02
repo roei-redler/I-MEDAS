@@ -319,29 +319,55 @@
         }
 
         function csvToSpecificTable(csv) {
-            const rows = csv.split('\n');
-            tableData = [];
+    const rows = csv.split('\n');
+    tableData = [];
 
-            console.log('CSV Rows:', rows); // Log the rows to debug
+    // Check if there are any rows in the CSV
+    if (rows.length < 2) {
+        console.error('CSV file is empty or invalid.');
+        return;
+    }
 
-            for (let i = 1; i < rows.length; i++) {
-                const cells = rows[i].split(',');
-                if (cells.length > 1) {
-                    const date = cells[13];
-                    const id = formatIsraeliId(cells[3]);
-                    const fullName = `${cells[5]} ${cells[4]}`;
-                    const type = "חוזר";
-                    const code = "22.36";
+    // Identify column indices from the header row
+    const headers = rows[0].split(',');
+    const appointmentDateIndex = headers.indexOf('AppointmentDate');
+    const idIndex = headers.indexOf('PersonalId1');  // Adjust if needed
+    const firstNameIndex = headers.indexOf('FirstName');  // Adjust if needed
+    const lastNameIndex = headers.indexOf('LastName1');  // Adjust if needed
 
-                    tableData.push({ date, id, fullName, type, code });
-                }
+    console.log('Header Columns:', headers); // Log header columns for debugging
+
+    if (appointmentDateIndex === -1) {
+        console.error('AppointmentDate column not found in CSV headers.');
+        return;
+    }
+
+    for (let i = 1; i < rows.length; i++) {
+        const cells = rows[i].split(',');
+
+        // Ensure we have enough columns
+        if (cells.length > Math.max(appointmentDateIndex, idIndex, firstNameIndex, lastNameIndex)) {
+            // Extract the date using the index from headers
+            const date = cells[appointmentDateIndex]?.trim() || '';
+            const id = formatIsraeliId(cells[idIndex]?.trim() || '');
+            const firstName = cells[firstNameIndex]?.trim() || '';
+            const lastName = cells[lastNameIndex]?.trim() || '';
+            const fullName = `${firstName} ${lastName}`.trim();
+            const type = "חוזר";
+            const code = "22.36";
+
+            if (date && id && fullName) {
+                tableData.push({ date, id, fullName, type, code });
             }
-
-            console.log('Table Data:', tableData); // Log the table data to debug
-            sortTableData();
-            sortAndRenderTable();
-            document.querySelector('.add-rows-btn').style.display = 'inline-block';
         }
+    }
+
+    console.log('Table Data:', tableData); // Log the table data to debug
+    sortAndRenderTable()
+    sortTableData();
+    
+    document.querySelector('.add-rows-btn').style.display = 'inline-block';
+}
 
         function sortAndRenderTable() {
             tableData.sort((a, b) => new Date(a.date) - new Date(b.date));
